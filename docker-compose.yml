@@ -1,17 +1,21 @@
-version: '3.8'
+# A linha 'version' pode ser removida, como o aviso sugere.
+# version: '3.8'
 
 services:
   postgres:
     image: postgres:15
     container_name: healthcare_postgres
     environment:
-      - POSTGRES_DB=${POSTGRES_DB}
-      - POSTGRES_USER=${POSTGRES_USER}
-      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+      # Deixe estas variáveis aqui! Elas ainda são usadas para criar o usuário 'postgres' e a senha 'root'.
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=root
     ports:
-      - "5432:5432"           # expõe a porta 5432 do container para o host
+      - "5432:5432"
     volumes:
+      # Esta linha continua igual, para persistir os dados
       - postgres_data:/var/lib/postgresql/data
+      # ESTA É A NOVA LINHA: Mapeia nosso script para dentro do container
+      - ./postgres-init:/docker-entrypoint-initdb.d
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U postgres -d healthcare"]
       interval: 10s
