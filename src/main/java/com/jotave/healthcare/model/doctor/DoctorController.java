@@ -17,7 +17,7 @@ public class DoctorController {
     private DoctorService service;
 
     @PostMapping
-    public ResponseEntity<DoctorDetailDto> createDoctor(@Valid @RequestBody DoctorCreateDto data, UriComponentsBuilder uriBuilder){
+    public ResponseEntity<DoctorDetailsDto> createDoctor(@Valid @RequestBody DoctorCreateDto data, UriComponentsBuilder uriBuilder){
         var doctor = service.create(data);
         var uri = uriBuilder.path("/doctors/{id}").buildAndExpand(doctor.id()).toUri();
         return ResponseEntity.created(uri).body(doctor);

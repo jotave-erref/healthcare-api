@@ -9,8 +9,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
 
-import java.net.URI;
-
 @RestController
 @RequestMapping("/patients")
 public class PatientController {
@@ -19,7 +17,7 @@ public class PatientController {
     private PatientService service;
 
     @PostMapping
-    public ResponseEntity<PatientDetailDto> createPatient(@RequestBody @Valid PatientCreateDto data, UriComponentsBuilder uriBuilder){
+    public ResponseEntity<PatientDetailsDto> createPatient(@RequestBody @Valid PatientCreateDto data, UriComponentsBuilder uriBuilder){
         var patient = service.create(data);
         var uri = uriBuilder.path("/patients/{id}").buildAndExpand(patient.id()).toUri();
         return ResponseEntity.created(uri).body(patient);

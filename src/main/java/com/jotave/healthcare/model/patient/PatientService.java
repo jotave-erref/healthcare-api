@@ -12,12 +12,12 @@ public class PatientService {
     private PatientRepository repository;
 
     @Transactional
-    public PatientDetailDto create(PatientCreateDto data){
+    public PatientDetailsDto create(PatientCreateDto data){
         if(repository.existsByCpf(data.cpf())){
             throw new BusinessException("CPF já cadastrado");
         }
         var patient = new Patient(data);
         repository.save(patient);
-        return new PatientDetailDto(patient);
+        return new PatientDetailsDto(patient);
     }
 }

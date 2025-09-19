@@ -12,14 +12,14 @@ public class DoctorService {
     private DoctorRepository repository;
 
     @Transactional
-    public DoctorDetailDto create(DoctorCreateDto data){
+    public DoctorDetailsDto create(DoctorCreateDto data){
         if(repository.existsByCrm(data.crm())){
             throw new BusinessException("CRM já cadastrado");
         }
 
         var doctor = new Doctor(data);
         repository.save(doctor);
-        return new DoctorDetailDto(doctor);
+        return new DoctorDetailsDto(doctor);
     }
 
 }
