@@ -6,7 +6,7 @@ public enum Especialidade {
     NEUROLOGIA,
     DERMATOLOGIA,
     PEDIATRIA,
-    TRAUATOLOGIA,
+    TRAUMATOLOGIA,
     OFTALMOLOGIA,
     GINECOLOGISTA
 }

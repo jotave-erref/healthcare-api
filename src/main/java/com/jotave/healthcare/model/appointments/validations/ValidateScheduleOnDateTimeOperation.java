@@ -25,7 +25,5 @@ public class ValidateScheduleOnDateTimeOperation implements ValidationInterface 
         if(horarioDeAbertura || horarioDeFechamento || horarioDoDia){ //SE o agendamento foi feito antes das 8:00 ou depois das 17:00 (1hr antes do fechamento) lançará exceção personalizada
             throw new BusinessException("Agendamento de consultas disponível entre 8:00 horas às 18:00 horas de segunda a sábado");
         }
-
-
     }
 }

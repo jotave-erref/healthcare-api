@@ -19,8 +19,8 @@ public class ValidatePatientSheduleOnDateTime implements ValidationInterface{
         var horaDoDia = dataHora.withHour(8);
         var diaDaSemana = dataHora.withHour(18);
 
-        var pacieteIdeData = repository.existsByPatientIdAndDataHoraBetween(data.patientId(), horaDoDia, diaDaSemana); //query method que vai avaliar se o pacienteID tem uma consulta marcada para o mesmo dia
-        if(pacieteIdeData){
+        var pacienteIdeData = repository.existsByPatientIdAndDataHoraBetween(data.patientId(), horaDoDia, diaDaSemana); //query method que vai avaliar se o pacienteID tem uma consulta marcada para o mesmo dia
+        if(pacienteIdeData){
             throw new BusinessException("Paciente já tem uma consulta agendada no mesmo dia");
         }
     }

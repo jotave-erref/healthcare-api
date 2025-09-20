@@ -14,17 +14,29 @@ import java.util.List;
 @Service
 public class AppointmentService {
 
-    @Autowired
-    private AppointmentsRepository repository;
+
+    private final AppointmentsRepository repository;
+
+
+    private final PatientRepository patientRepository;
+
+
+    private final DoctorRepository doctorRepository;
+
+
+    private final List<ValidationInterface> validations;
+
 
     @Autowired
-    PatientRepository patientRepository;
-
-    @Autowired
-    private DoctorRepository doctorRepository;
-
-    @Autowired
-    private List<ValidationInterface> validations = new ArrayList<>();
+    public AppointmentService(AppointmentsRepository repository,
+                              PatientRepository patientRepository,
+                              DoctorRepository doctorRepository,
+                              List<ValidationInterface> validations) {
+        this.repository = repository;
+        this.patientRepository = patientRepository;
+        this.doctorRepository = doctorRepository;
+        this.validations = validations;
+    }
 
 
     @Transactional
